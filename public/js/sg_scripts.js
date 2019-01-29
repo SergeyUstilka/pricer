@@ -36,6 +36,9 @@
                     $('#clever_result').css('display','none');
                 }
 
+            },
+            error:function(data){
+                console.log(data);
             }
         });
     });
