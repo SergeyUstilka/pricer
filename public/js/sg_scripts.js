@@ -16,7 +16,7 @@
             method:'POST',
             data:{patern:data,category:category},
             success:function (data) {
-                console.log(JSON.parse(data));
+                console.log(data);
                 var results = JSON.parse(data);
                 if(results.length >0){
                     $('#clever_result').css('display','block');
