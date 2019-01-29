@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class SearchController extends Controller
 {
     public function index(Request $request){
-        if(count($request->input('patern'))>0){
+        if($request->input('patern')){
             $pattern ="%".$request->input('patern')."%";
             $category = "%".$request->input('category')."%";
             $products=  Product::query()->where('cat_id','like',$category)->where('name','like',$pattern)->get();
