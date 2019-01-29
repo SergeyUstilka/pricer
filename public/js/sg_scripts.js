@@ -6,11 +6,11 @@
         var data = $(this).val();
         var category =$(this).parent().children().eq(2).val()
             // console.log(category);
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
+        // $.ajaxSetup({
+        //     headers: {
+        //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        //     }
+        // });
         $.ajax({
             url:'/clever_search',
             method:'POST',
