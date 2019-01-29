@@ -5,18 +5,16 @@
         event.preventDefault();
         var data = $(this).val();
         var category =$(this).parent().children().eq(2).val()
-            // console.log(category);
-        // $.ajaxSetup({
-        //     headers: {
-        //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        //     }
-        // });
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
         $.ajax({
             url:'/clever_search',
             method:'POST',
             data:{patern:data,category:category,_token: $('#signup-token').val()},
             success:function (data) {
-                console.log(data);
                 var results = JSON.parse(data);
                 if(results.length >0){
                     $('#clever_result').css('display','block');
