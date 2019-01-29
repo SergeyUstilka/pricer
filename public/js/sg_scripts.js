@@ -14,7 +14,7 @@
         $.ajax({
             url:'/clever_search',
             method:'POST',
-            data:{patern:data,category:category},
+            data:{patern:data,category:category,_token: $('#signup-token').val()},
             success:function (data) {
                 console.log(data);
                 var results = JSON.parse(data);

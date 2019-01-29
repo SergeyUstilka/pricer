@@ -14,6 +14,7 @@
             <div class="row">
             @foreach($products as $product)
                 <!-- Product Single -->
+                    <input id="signup-token" name="_token" type="hidden" value="{{csrf_token()}}">
                     <div class="col-md-3 col-sm-6 col-xs-6">
                         <div class="product product-single">
                             <div class="product-thumb">
