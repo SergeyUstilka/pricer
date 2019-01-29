@@ -113,6 +113,42 @@ hr {
 }
 
 /*----------------------------*\
+	SG styles
+\*----------------------------*/
+
+
+#current_category{
+}
+#current_category a{
+  color: #F8694A!important;
+  font-weight: 700;
+  border: 1px solid #F8694A;
+}
+.header-search{
+  position: relative;
+}
+#clever_result{
+  display: none;
+  position: absolute;
+  background: #fff;
+  z-index: 100;
+  padding: 10px;
+  border:1px solid #F8694A;
+  top: 55px;
+  width: 100%;
+  max-height: 300px;
+  overflow: scroll;
+}
+#clever_result ul{}
+#clever_result ul li{
+  padding: 10px 0;
+  border-bottom:1px solid #DADADA ;
+  cursor: pointer;
+}
+#clever_result ul li:last-child{
+  border-bottom: none;
+}
+/*----------------------------*\
 	Buttons
 \*----------------------------*/
 
@@ -1728,3 +1764,6 @@ textarea.input {
     width: 100%;
   }
 }
+
+
+

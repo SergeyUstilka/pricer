@@ -88,17 +88,7 @@
                 <!-- /Logo -->
 
                 <!-- Search -->
-                <div class="header-search">
-                    <form>
-                        <input class="input search-input" type="text" placeholder="Enter your keyword">
-                        <select class="input search-categories">
-                            <option value="0">All Categories</option>
-                            <option value="1">Category 01</option>
-                            <option value="1">Category 02</option>
-                        </select>
-                        <button class="search-btn"><i class="fa fa-search"></i></button>
-                    </form>
-                </div>
+                @include('partials.header-search')
                 <!-- /Search -->
             </div>
             <div class="pull-right">
@@ -187,7 +177,13 @@
     <div class="container">
         <div id="responsive-nav">
             <!-- category nav -->
-            <div class="category-nav @if($_SERVER['REQUEST_URI'] != '/') show-on-click @endif">
+            <div class="category-nav
+                <?php
+                    if(($_SERVER['REQUEST_URI'] != '/') xor strripos($_SERVER['REQUEST_URI'],'catalog')){
+                        echo 'show-on-click';
+                    }
+                ?>
+             ">
                 <span class="category-header">Categories <i class="fa fa-list"></i></span>
                 @include('partials.top_menu')
             </div>
@@ -197,8 +193,8 @@
             <div class="menu-nav">
                 <span class="menu-header">Menu <i class="fa fa-bars"></i></span>
                 <ul class="menu-list">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Shop</a></li>
+                    <li><a href="{{route('main_page')}}">Home</a></li>
+                    <li><a href="{{route('catalog')}}">Shop</a></li>
                 </ul>
             </div>
             <!-- menu nav -->
@@ -315,6 +311,7 @@
 <script src="{{asset('js/nouislider.min.js')}}"></script>
 <script src="{{asset('js/jquery.zoom.min.js')}}"></script>
 <script src="{{asset('js/main.js')}}"></script>
+<script src="{{asset('js/sg_scripts.js')}}"></script>
 
 </body>
 

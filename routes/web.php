@@ -14,8 +14,11 @@
 Route::get('/', 'IndexController@index')->name('main_page');
 Auth::routes();
 
-Route::get('/catalog/{category?}','CatalogController@index')->name('catalog');
-Route::get('/catalog/{category}/{product}','CatalogController@product')->name('product');
+Route::any('/catalog/{category?}','CatalogController@index')->name('catalog');
+Route::get('/product/{category}/{product}','CatalogController@product')->name('product');
+
+Route::post('/clever_search','SearchController@index');
+Route::post('/search','SearchController@find');
 
 
 
