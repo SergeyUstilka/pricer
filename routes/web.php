@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'IndexController@index')->name('main_page');
+Route::get('/home', 'IndexController@index');
 Auth::routes();
 
 Route::any('/catalog/{category?}','CatalogController@index')->name('catalog');
@@ -19,6 +20,14 @@ Route::get('/product/{category}/{product}','CatalogController@product')->name('p
 
 Route::post('/clever_search','SearchController@index');
 Route::post('/search','SearchController@find');
+
+
+Route::namespace('Admin')->middleware(['auth'])->prefix('admin')->name('admin.')->group(function(){
+    Route::get('/','HomeController@index');
+    Route::resource('/product','ProductController');
+    Route::resource('/category','CategoryController');
+    Route::resource('/shop','ShopController');
+});
 
 
 

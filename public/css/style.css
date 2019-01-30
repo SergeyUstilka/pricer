@@ -148,6 +148,17 @@ hr {
 #clever_result ul li:last-child{
   border-bottom: none;
 }
+.no_class{
+  border: none;
+  background: none;
+  text-transform: none;
+  padding: 0;
+  min-width: 113px;
+  display: inline-block
+}
+.no_class:hover{
+    color: #F8694A;
+}
 /*----------------------------*\
 	Buttons
 \*----------------------------*/
