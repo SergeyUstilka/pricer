@@ -15,4 +15,14 @@ class Category extends Model
     public function products(){
         return $this->hasMany(Product::class,'cat_id');
     }
+
+    static function boot(){
+        parent::boot();
+        self::creating(function ($model){
+            $model->slug = str_slug($model->name);
+        });
+        self::updating(function ($model){
+            $model->slug = str_slug($model->name);
+        });
+    }
 }

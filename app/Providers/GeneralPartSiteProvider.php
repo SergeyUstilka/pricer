@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Category;
+use App\Models\Product;
 use App\Models\Shop;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -30,10 +31,11 @@ class GeneralPartSiteProvider extends ServiceProvider
     }
 
     public function site_parts(){
-        View::composer(['partials.top_menu','partials.header-search'],function ($view){
+        View::composer(['partials.top_menu','partials.header-search','partials.admin_sidebar'],function ($view){
             $categories = Category::all();
             $shops = Shop::all();
-            $view->with(compact('categories','shops'));
+            $products = Product::all();
+            $view->with(compact('categories','shops','products'));
         });
     }
 }

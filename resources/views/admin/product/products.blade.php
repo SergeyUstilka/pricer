@@ -24,7 +24,7 @@
                     <select class="form-control" name="category">
                         <option value="">Любая</option>
                         @foreach($categories as $category)
-                            <option value="{{$category->id}}"  @if($category_order == $category->id) selected @endif>{{$category->name}}</option>
+                            <option value="{{$category->id}}"  @if($category_order == $category->id) selected @endif>{{$category->name}} ({{count($category->products)}})</option>
                         @endforeach
                     </select>
                 </div>
@@ -33,14 +33,23 @@
                     <select class="form-control" name="shop">
                         <option value="">Любой</option>
                         @foreach($shops as $shop)
-                            <option value="{{$shop->id}}" @if($shop_order == $shop->id) selected @endif>{{$shop->name}}</option>
+                            <option value="{{$shop->id}}" @if($shop_order == $shop->id) selected @endif>{{$shop->name}} ({{count($shop->products)}})</option>
                         @endforeach
                     </select>
                 </div>
                 <button type="submit" class="btn btn-md btn-success">Сортировать</button>
             </form>
         </div>
+        <div class="col-md-3 "style="margin-top: 40px;">
+            <a href="{{route('admin.product.create')}}" class="btn btn-lg btn-warning">Создать новый</a>
+        </div>
     </div>
+    @if ($message = Session::get('status'))
+        <div class="alert alert-success alert-block">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <strong>{{ $message }}</strong>
+        </div>
+    @endif
     <div class="row">
         <div class="col-md-12">
             <table class="table">
@@ -83,10 +92,10 @@
                             <td>{{$product->unit}}</td>
                             <td>{{$product->price}}</td>
                             <td>
-                                <button type="button" class="btn btn-md btn-primary">Primary</button>
+                                <a href="{{route('admin.product.edit',['product'=>$product])}}" type="button" class="btn btn-md btn-primary">Редактировать</a>
                                 <br>
                                 <br>
-                                <button type="button" class="btn btn-md btn-danger">Danger</button>
+                                <button type="button" class="btn btn-md btn-danger delete-data" data-url="{{route('admin.product.destroy',['product'=>$product])}}">Удалить</button>
                             </td>
                         </tr>
 

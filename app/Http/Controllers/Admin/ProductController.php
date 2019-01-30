@@ -26,6 +26,8 @@ class ProductController extends Controller
             ->where('shop_id','like',"%".$shop_order."%")->orderBy($order,'desc')->get();
         }else{
             $products = Product::all();
+            $shop_order = null;
+            $category_order = null;
         }
         $categories = Category::all();
         $shops = Shop::all();
@@ -39,7 +41,10 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $product = new Product();
+        $categories = Category::all();
+        $shops= Shop::all();
+        return view('admin.product.edit', compact('product', 'categories','shops'));
     }
 
     /**
@@ -50,7 +55,10 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $product = new Product($request->except('_token'));
+        $product->save();
+        $request->session()->flash('status','Товар добавлен');
+        return redirect(route('admin.product.index'));
     }
 
     /**
@@ -72,7 +80,9 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        $categories = Category::all();
+        $shops= Shop::all();
+        return view('admin.product.edit', compact('product','categories','shops'));
     }
 
     /**
@@ -84,7 +94,8 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        $product->update($request->all());
+        return redirect(route('admin.product.index'));
     }
 
     /**
@@ -95,6 +106,7 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
+        return [];
     }
 }
