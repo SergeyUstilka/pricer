@@ -43,7 +43,7 @@
                         </div>
                         <div class="pull-right">
                             <div class="page-filter">
-                                <span class="text-uppercase">Показывать:</span>
+                                <span class="text-uppercase">Товаров на странице:</span>
                                 <select class="input" name="count_product">
                                     <option value="10" @if($request->input('count_product')== '10') selected @endif>10</option>
                                     <option value="20"@if($request->input('count_product')== '20') selected @endif>20</option>

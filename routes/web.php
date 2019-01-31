@@ -25,6 +25,7 @@ Route::post('/search','SearchController@find');
 Route::namespace('Admin')->middleware(['auth'])->prefix('admin')->name('admin.')->group(function(){
     Route::get('/','HomeController@index');
     Route::resource('/product','ProductController');
+    Route::resource('{product}/photo', 'PhotoController');
     Route::resource('/category','CategoryController');
     Route::resource('/shop','ShopController');
 });

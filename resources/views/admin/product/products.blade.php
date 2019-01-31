@@ -9,6 +9,14 @@
         }
     </style>
     <div class="row">
+        <ol class="breadcrumb">
+            <li><a href="{{route('admin.')}}">
+                    <em class="fa fa-home"></em>
+                </a></li>
+            <li class="active">Товары</li>
+        </ol>
+    </div><!--/.row-->
+    <div class="row">
         <div class="col-md-9 filter-list" >
             <form action="{{$_SERVER['REQUEST_URI']}}">
                 @csrf
@@ -93,6 +101,9 @@
                             <td>{{$product->price}}</td>
                             <td>
                                 <a href="{{route('admin.product.edit',['product'=>$product])}}" type="button" class="btn btn-md btn-primary">Редактировать</a>
+                                <br>
+                                <br>
+                                <a href="{{route('admin.photo.index', ['product'=>$product])}}" class="btn btn-md btn-default">Фотографии</a>
                                 <br>
                                 <br>
                                 <button type="button" class="btn btn-md btn-danger delete-data" data-url="{{route('admin.product.destroy',['product'=>$product])}}">Удалить</button>
