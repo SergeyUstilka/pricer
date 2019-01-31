@@ -13,12 +13,12 @@
             <li><a href="{{route('admin.')}}">
                     <em class="fa fa-home"></em>
                 </a></li>
-            <li class="active">Категории</li>
+            <li class="active">Магазины</li>
         </ol>
     </div><!--/.row-->
     <div class="row" style="margin: 0px 0 20px 0;">
         <div class="col-md-3 "style="margin-top: 40px;">
-            <a href="{{route('admin.category.create')}}" class="btn btn-lg btn-warning">Создать новую</a>
+            <a href="{{route('admin.shop.create')}}" class="btn btn-lg btn-warning">Создать новый</a>
         </div>
     </div>
     @if ($message = Session::get('status'))
@@ -41,26 +41,26 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($categories as $category)
+                    @foreach($shops as $shop)
                         <tr>
-                            <td>{{$category->id}}</td>
-                            <td>{{$category->name}}</td>
-                            <td>{{$category->slug}}</td>
-                            <td style="max-width: 300px;">{{$category->description}}</td>
+                            <td>{{$shop->id}}</td>
+                            <td>{{$shop->name}}</td>
+                            <td>{{$shop->slug}}</td>
+                            <td style="max-width: 300px;">{{$shop->description}}</td>
                             <td >
                                 <div style="max-height: 200px; overflow: scroll;">
                                     <?php $i=1 ?>
-                                    @foreach($category->products as $product)
+                                    @foreach($shop->products as $product)
                                         <p>{{$i++}}) <a href="{{route('admin.product.edit',['product'=>$product])}}">{{$product->name}}</a></p>
                                     @endforeach
                                 </div>
 
                             </td>
                             <td>
-                                <a href="{{route('admin.category.edit',['product'=>$category])}}" type="button" class="btn btn-md btn-primary">Редактировать</a>
+                                <a href="{{route('admin.shop.edit',['product'=>$shop])}}" type="button" class="btn btn-md btn-primary">Редактировать</a>
                                 <br>
                                 <br>
-                                <button type="button" class="btn btn-md btn-danger delete-data" data-url="{{route('admin.category.destroy',['category'=>$category])}}">Удалить</button>
+                                <button type="button" class="btn btn-md btn-danger delete-data" data-url="{{route('admin.shop.destroy',['shop'=>$shop])}}">Удалить</button>
                             </td>
                         </tr>
 

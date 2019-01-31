@@ -23,8 +23,8 @@ class CreateProductsTable extends Migration
             $table->decimal('price',10,2)->default(0);
             $table->string('unit',255)->nullable(true);
             $table->integer('shop_id')->unsigned();
-            $table->foreign('cat_id')->references('id')->on('categories');
-            $table->foreign('shop_id')->references('id')->on('shops');
+            $table->foreign('cat_id')->references('id')->on('categories')->onDelete('cascade');
+            $table->foreign('shop_id')->references('id')->on('shops')->onDelete('cascade');
             $table->timestamps();
         });
     }

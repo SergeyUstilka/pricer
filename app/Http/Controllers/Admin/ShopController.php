@@ -15,7 +15,8 @@ class ShopController extends Controller
      */
     public function index()
     {
-        //
+        $shops = Shop::all();
+        return view('admin.shop.shop', compact('shops'));
     }
 
     /**
@@ -25,7 +26,8 @@ class ShopController extends Controller
      */
     public function create()
     {
-        //
+        $shop = new Shop();
+        return view('admin.shop.edit', compact('shop'));
     }
 
     /**
@@ -36,7 +38,10 @@ class ShopController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $shop = new Shop($request->except('_token'));
+        $shop->save();
+        $request->session()->flash('status','Магазин добавлен');
+        return redirect(route('admin.shop.index'));
     }
 
     /**
@@ -58,7 +63,7 @@ class ShopController extends Controller
      */
     public function edit(Shop $shop)
     {
-        //
+        return view('admin.shop.edit', compact('shop'));
     }
 
     /**
@@ -70,7 +75,8 @@ class ShopController extends Controller
      */
     public function update(Request $request, Shop $shop)
     {
-        //
+        $shop->update($request->all());
+        return redirect(route('admin.shop.index'));
     }
 
     /**
@@ -81,6 +87,7 @@ class ShopController extends Controller
      */
     public function destroy(Shop $shop)
     {
-        //
+        $shop->delete();
+        return [];
     }
 }

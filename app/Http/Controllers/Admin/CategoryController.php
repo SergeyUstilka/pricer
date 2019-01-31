@@ -26,7 +26,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        $category = new Category();
+        return view('admin.category.edit', compact('category'));
     }
 
     /**
@@ -37,7 +38,10 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $category = new Category($request->except('_token'));
+        $category->save();
+        $request->session()->flash('status','Категория добавлена');
+        return redirect(route('admin.category.index'));
     }
 
     /**
@@ -59,7 +63,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view('admin.category.edit', compact('category'));
     }
 
     /**
@@ -71,7 +75,8 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $category->update($request->all());
+        return redirect(route('admin.category.index'));
     }
 
     /**
@@ -82,6 +87,7 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        return [];
     }
 }
