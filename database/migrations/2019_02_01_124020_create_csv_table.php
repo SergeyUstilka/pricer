@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateShopTable extends Migration
+class CreateCsvTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateShopTable extends Migration
      */
     public function up()
     {
-        Schema::create('shops', function (Blueprint $table) {
+        Schema::create('csv', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name',255)->nullable(false);
-            $table->string('img',400)->nullable()->default('sgone_no_img.png');;
-            $table->string('slug',255)->nullable(false);
-            $table->text('description')->nullable(true);
+            $table->integer('shop_id')->unsigned();
+            $table->integer('active')->unsigned();
+            $table->foreign('shop_id')->references('id')->on('shops')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreateShopTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('shop');
+        Schema::dropIfExists('csv');
     }
 }

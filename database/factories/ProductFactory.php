@@ -7,7 +7,7 @@ $factory->define(App\Models\Product::class, function (Faker $faker) {
     return [
         'name'=>$name,
         'slug'=>str_slug($name),
-        'desription'=>$faker->text(300),
+        'description'=>$faker->text(300),
         'cat_id'=>(\App\Models\Category::query()->inRandomOrder()->limit(1)->get()[0])->id,
         'price'=>$faker->randomFloat(10,0,100),
         'shop_id'=>(\App\Models\Shop::query()->inRandomOrder()->limit(1)->get())[0]->id,

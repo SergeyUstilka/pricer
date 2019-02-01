@@ -68,7 +68,15 @@
                             <div class="product product-single">
                                 <div class="product-thumb">
                                     <a href="{{route('product',['product'=>$product, 'category'=>\App\Models\Category::query()->where('id',$product->cat_id)->first()])}}" class="main-btn quick-view"><i class="fa fa-search-plus"></i> Описание</a>
-                                     <img src="{{asset('/storage/img/'.$product->img)}}" alt="">
+
+                                    <img src="
+                                        @if(strrpos($product->img,'sgone') === 0)
+                                            {{asset('/storage/img/'.$product->img)}}
+                                        @else
+                                            {{$product->img}}
+                                        @endif
+
+                                             " alt="">
                                 </div>
                                 <div class="product-body">
                                     <h3 class="product-price">{{$product->price}}</h3>

@@ -41,7 +41,7 @@ class PhotoController extends Controller
         if(isset($request->images)){
             $files = $request->images;
             foreach ($files as $file) {
-                $name = time().$file->getClientOriginalName();
+                $name = 'sgone_'.time().$file->getClientOriginalName();
                 $file->move(storage_path('app/public/img'),$name);
                 $photo = new Photo();
                 $photo->name = $name;

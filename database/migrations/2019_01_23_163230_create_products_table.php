@@ -9,7 +9,7 @@ class CreateProductsTable extends Migration
     /**
      * Run the migrations.
      *
-     * @return void
+     * @return void desription
      */
     public function up()
     {
@@ -17,8 +17,8 @@ class CreateProductsTable extends Migration
             $table->increments('id');
             $table->string('name',256)->nullable(false);
             $table->string('slug',256)->nullable(false);
-            $table->string('img',256)->default('no_img.png');
-            $table->text('desription')->nullable(true);
+            $table->string('img',256)->default('sgone_no_img.png');
+            $table->text('description')->nullable(true);
             $table->integer('cat_id')->unsigned();
             $table->decimal('price',10,2)->default(0);
             $table->string('unit',255)->nullable(true);

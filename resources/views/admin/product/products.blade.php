@@ -82,7 +82,7 @@
                             <td><img src="{{asset('/storage/img/'.$product->img)}}" alt="" width="100px;"></td>
                             <td>{{$product->name}}</td>
                             <td>{{$product->slug}}</td>
-                            <td>{{$product->desription}}</td>
+                            <td>{{$product->description}}</td>
                             <td>
                                 @foreach($categories as $category)
                                     @if($category->id == $product->cat_id)

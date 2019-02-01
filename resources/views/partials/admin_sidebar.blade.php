@@ -32,7 +32,7 @@
                     </a></li>
             </ul>
         </li>
-        <li><a href="panels.html"><em class="fa fa-clone">&nbsp;</em> Загрузка товаров</a></li>
+        <li><a href="{{route('admin.csv.index')}}"><em class="fa fa-clone">&nbsp;</em> Загрузка товаров</a></li>
         <li>
             <form action="{{route('logout')}}" method="post">
                 @csrf

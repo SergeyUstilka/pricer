@@ -32,4 +32,9 @@ class CatalogController extends Controller
         $shop = Shop::query()->where('id',$product->shop_id)->first();
         return view('catalog.product', compact('product','category','shop'));
     }
+
+
+    public function csv(){
+        return view('catalog.csv');
+    }
 }

@@ -70,7 +70,7 @@
                         </div>
                         <div class="form-group">
                             <label>Описание</label>
-                            <textarea type="text" id="nf-password" name="desription" class="form-control">@if ($product->id) {{$product->desription}}@endif
+                            <textarea type="text" id="nf-password" name="description" class="form-control">@if ($product->id) {{$product->description}}@endif
                             </textarea>
                         </div>
                         <div class="card-footer">
