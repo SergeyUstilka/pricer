@@ -26,7 +26,7 @@ class ProductRequest extends FormRequest
         switch ($this->method()) {
             case 'PUT':
                 $rules = [
-                    'name'=> 'required|unique:product,slug,:slug\'',
+                    'name'=> 'required|unique:products,slug,:slug\'',
                     'price'=>'required|numeric|max:100000',
                     'cat_id'=>'required',
                     'shop_id'=>'required',
@@ -37,7 +37,7 @@ class ProductRequest extends FormRequest
 
             default:
                 $rules = [
-                    'name'=> 'required|unique:product',
+                    'name'=> 'required|unique:products',
                     'price'=>'required|numeric|max:100000',
                     'cat_id'=>'required',
                     'shop_id'=>'required',

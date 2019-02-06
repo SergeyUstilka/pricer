@@ -20,7 +20,7 @@
         <li class="parent "><a data-toggle="collapse" href="#sub-item-1">
                 <em class="fa fa-navicon">&nbsp;</em> Товары <span data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em class="fa fa-plus"></em></span>
             </a>
-            <ul class="children collapse" id="sub-item-1">
+            <ul class="children collapse in" id="sub-item-1">
                 <li><a class="" href="{{route('admin.product.index')}}">
                         <span class="fa fa-arrow-right">&nbsp;</span>Товары ({{count($products)}})
                     </a></li>

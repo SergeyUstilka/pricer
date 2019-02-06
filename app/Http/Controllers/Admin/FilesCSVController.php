@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\ProductRequest;
 use App\Models\CSV;
+use App\Models\Product;
 use App\Models\Shop;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -17,7 +19,8 @@ class FilesCSVController extends Controller
     public function index()
     {
         $shops = Shop::all();
-        return view('admin.csv.csv',compact('shops'));
+        $csv_files = CSV::all();
+        return view('admin.csv.csv',compact('shops', 'csv_files'));
     }
 
     /**
@@ -48,6 +51,7 @@ class FilesCSVController extends Controller
             $csv->name = $name;
             $csv->shop_id = $shop->id;
             $csv->active = 0;
+            $csv->description = $request->input('description');
             $csv->save();
         }
         $request->session()->flash('status','Каталог загружен');
@@ -95,8 +99,44 @@ class FilesCSVController extends Controller
      * @param  \App\Models\CSV  $cSV
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CSV $cSV)
+    public function destroy(CSV $csv)
     {
-        //
+        $file_path = app_path().'/../public/storage/csv/'.$csv->name;
+        unlink($file_path);
+        $csv->delete();
+        return [];
+    }
+
+
+    public function activate(Request $request ){
+        $file_path = app_path().'/../public/storage/csv/'.$request->input('csv');
+        $fp = fopen($file_path,'r');
+        while (($data = fgetcsv($fp, ",")) !== FALSE){
+            $properties= array('name','img','description','cat_id','price','unit');
+            $product = new Product();
+            $i=0;
+            foreach ($properties as $property){
+                $product->$property = $data[$i];
+                $i++;
+            }
+            $product->shop_id = $request->input('shop');
+            $product->csv_id = $request->input('csv_id');
+
+            $product->save();
+        }
+        fclose($fp);
+        $csv = CSV::query()->where('id',$request->input('csv_id'))->first();
+        $csv->active = 1;
+        $csv->save();
+    }
+
+    public function disactivate(Request $request ){
+        $products = Product::query()->where('csv_id', $request->input('csv_id'))->get();
+        foreach ($products as $product){
+            $product->delete();
+        }
+        $csv = CSV::query()->where('id',$request->input('csv_id'))->first();
+        $csv->active = 0;
+        $csv->save();
     }
 }

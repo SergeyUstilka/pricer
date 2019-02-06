@@ -16,6 +16,7 @@ class CreateCsvTable extends Migration
         Schema::create('csv', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name',255)->nullable(false);
+            $table->string('description')->nullable()->default('нет описания');
             $table->integer('shop_id')->unsigned();
             $table->integer('active')->unsigned();
             $table->foreign('shop_id')->references('id')->on('shops')->onDelete('cascade');

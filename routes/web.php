@@ -31,6 +31,8 @@ Route::namespace('Admin')->middleware(['auth'])->prefix('admin')->name('admin.')
     Route::resource('/category','CategoryController');
     Route::resource('/shop','ShopController');
     Route::resource('csv','FilesCSVController');
+    Route::any('activate_csv', 'FilesCSVController@activate')->name('activate_csv');
+    Route::any('disactivate_csv', 'FilesCSVController@disactivate')->name('disactivate_csv');
 });
 
 
