@@ -16,6 +16,11 @@
     @endif
     <div class="panel panel-default">
         <div class="row">
+            <div class="col-md-3 "style="margin-top: 40px;">
+                <a href="tesco.csv" class="btn btn-lg btn-primary">Скачать файл с сервера</a>
+            </div>
+        </div>
+        <div class="row">
             <div class="col-md-6">
             <div class="panel-heading">Загрузка CSV</div>
             <div class="panel-body">
