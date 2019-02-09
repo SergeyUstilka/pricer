@@ -118,7 +118,7 @@ class FilesCSVController extends Controller
             print_r($data[$i]);
             foreach ($properties as $property){
                 if($property == 'price'){
-                    $product->$property = $data[$i]*0.6;
+                    $product->$property = floatval(0.6*$data[$i]);
                     break;
                 }
                 $product->$property = $data[$i];
