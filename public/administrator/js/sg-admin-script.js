@@ -47,9 +47,7 @@
             method: 'POST',
             data:{csv:csv_name,shop:shop_id, csv_id:csv_id},
             success: function (data) {
-                console.log(data);
                 activeStatusBlock.html(1);
-                console.log();
                 disactiveStatusButton.removeClass('hidden');
                 activeStatusButton.addClass('hidden');
             },

@@ -111,11 +111,16 @@ class FilesCSVController extends Controller
     public function activate(Request $request ){
         $file_path = app_path().'/../public/storage/csv/'.$request->input('csv');
         $fp = fopen($file_path,'r');
-        while (($data = fgetcsv($fp, ",")) !== FALSE){
+        while (($data = fgetcsv($fp, '10000', ';')) !== FALSE){
             $properties= array('name','img','description','cat_id','price','unit');
             $product = new Product();
             $i=0;
+            print_r($data[$i]);
             foreach ($properties as $property){
+                if($property == 'price'){
+                    $product->$property = $data[$i]*0.6;
+                    break;
+                }
                 $product->$property = $data[$i];
                 $i++;
             }
@@ -128,6 +133,7 @@ class FilesCSVController extends Controller
         $csv = CSV::query()->where('id',$request->input('csv_id'))->first();
         $csv->active = 1;
         $csv->save();
+        return [];
     }
 
     public function disactivate(Request $request ){
