@@ -20,6 +20,9 @@
         <div class="col-md-3 "style="margin-top: 40px;">
             <a href="{{route('admin.category.create')}}" class="btn btn-lg btn-warning">Создать новую</a>
         </div>
+        <div class="col-md-3 "style="margin-top: 40px;">
+            <a href="{{route('admin.make_default_category')}}" class="btn btn-lg btn-primary">Создать дефолтные категории</a>
+        </div>
     </div>
     @if ($message = Session::get('status'))
         <div class="alert alert-success alert-block">

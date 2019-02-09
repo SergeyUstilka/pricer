@@ -29,6 +29,7 @@ Route::namespace('Admin')->middleware(['auth'])->prefix('admin')->name('admin.')
     Route::resource('/product','ProductController');
     Route::resource('{product}/photo', 'PhotoController');
     Route::resource('/category','CategoryController');
+    Route::get('/make_default_category','CategoryController@addDefaultCategories')->name('make_default_category');
     Route::resource('/shop','ShopController');
     Route::resource('csv','FilesCSVController');
     Route::any('activate_csv', 'FilesCSVController@activate')->name('activate_csv');

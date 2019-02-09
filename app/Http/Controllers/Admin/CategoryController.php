@@ -91,5 +91,16 @@ class CategoryController extends Controller
         return [];
     }
 
+    public function addDefaultCategories(){
+        $categories =  ['any','Фрукты, овощи','Молочные продукты и яйца','Хлеб, кондитерские изделия', 'Мясо, рыба, деликатесы', 'Бакалея',
+            'Замороженные продукты', 'Напитки', 'Бытовая химия','Косметика', 'Для детей','Для животных', 'Дом и сад'];
+        foreach($categories as $category){
+            $cat = new Category();
+            $cat->name = $category;
+            $cat->description = $category;
+            $cat->save();
+        }
+        return redirect(route('admin.category.index'));
+    }
 
 }

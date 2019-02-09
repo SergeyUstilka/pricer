@@ -72,7 +72,7 @@
                                     <img src="@if(strrpos($product->img,'sgone') === 0){{asset('/storage/img/'.$product->img)}}@else{{$product->img}}@endif" alt="">
                                 </div>
                                 <div class="product-body">
-                                    <h3 class="product-price">{{$product->price}}</h3>
+                                    <h3 class="product-price">{{$product->price}} за {{$product->count}}</h3>
                                     <h2 class="product-name">
                                         <a href="{{route('product',['product'=>$product, 'category'=>\App\Models\Category::query()->where('id',$product->cat_id)->first()])}}">
                                             {{$product->name}}
