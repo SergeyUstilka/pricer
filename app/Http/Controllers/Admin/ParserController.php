@@ -79,7 +79,7 @@ class ParserController extends Controller
    public static function parseProductPages($links, $fp){
        $j=0;
 
-       $categories = [0,'Owoce, warzywa','Nabiał i jaja','Pieczywo, cukiernia', 'Mięso, ryby, garmaż', 'Art. spożywcze', 'Mrożonki', 'Napoje', 'Chemia','Kosmetyki', 'Dla dzieci','Dla zwierząt', 'Art. przemysłowe'];
+       $categories = ['any','Owoce, warzywa','Nabiał i jaja','Pieczywo, cukiernia', 'Mięso, ryby, garmaż', 'Art. spożywcze', 'Mrożonki', 'Napoje', 'Chemia','Kosmetyki', 'Dla dzieci','Dla zwierząt', 'Art. przemysłowe'];
        foreach($links as $link){
            $productPage =new Document();
            $productPage->loadHtmlFile('https://ezakupy.tesco.pl'.$link, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
