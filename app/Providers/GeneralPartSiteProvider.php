@@ -31,7 +31,7 @@ class GeneralPartSiteProvider extends ServiceProvider
     }
 
     public function site_parts(){
-        View::composer(['partials.top_menu','partials.header-search','partials.admin_sidebar'],function ($view){
+        View::composer(['partials.top_menu','partials.header-search','partials.admin_sidebar','partials.fasade_top_filter'],function ($view){
             $categories = Category::all();
             $shops = Shop::all();
             $products = Product::all();

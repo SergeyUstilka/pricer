@@ -10,19 +10,34 @@ use Illuminate\Http\Request;
 class CatalogController extends Controller
 {
     public function index(Category $category,Request $request){
+        $catalog_filter = $request->session()->get('catalog_filter');
+        if(!$request->session()->get('catalog_filter')){
+            $catalog_filter['count_product'] = 10;
+            $catalog_filter['sort_by'] = 'updated_at';
+            $catalog_filter['shop'] = 'all';
+            session('catalog_filter',$catalog_filter);
+        };
         if($_POST){
-            $paginate_count= $request->input('count_product');
-            $sort_by= $request->input('sort_by');
-        }else{
-            $paginate_count = 10;
-            $sort_by = 'updated_at';
+            $catalog_filter['count_product'] = $request->input('count_product');;
+            $catalog_filter['sort_by'] = $request->input('sort_by');
+            $catalog_filter['shop'] = $request->input('sort_shop');
+            session(['catalog_filter'=>$catalog_filter]);
         }
         if($category->id){
-            $products = Product::query()->where('cat_id',$category->id)->orderBy($sort_by,'desc')->paginate($paginate_count);
+            $products = Product::query()->where('cat_id',$category->id)->orderBy($catalog_filter['sort_by'],'desc')
+                ->paginate($catalog_filter['count_product']);
             $current_category = $category;
+            if(count($products->items())  === 0){
+                return redirect('/catalog/'.$category->slug.'/');
+            }
+
         }else{
-            $products = Product::orderBy($sort_by,'desc')->paginate($paginate_count);
+            $products = Product::orderBy($catalog_filter['sort_by'],'desc')
+                ->paginate($catalog_filter['count_product']);
             $current_category = null;
+            if(count($products->items())  === 0){
+                return redirect('/catalog/');
+            }
         }
 
         return view('catalog.fasade',compact('products','current_category','request'));

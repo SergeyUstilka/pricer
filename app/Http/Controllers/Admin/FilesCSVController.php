@@ -112,13 +112,16 @@ class FilesCSVController extends Controller
         $file_path = app_path().'/../public/storage/csv/'.$request->input('csv');
         $fp = fopen($file_path,'r');
         while (($data = fgetcsv($fp, '10000', ';')) !== FALSE){
-            $properties= array('name','img','description','cat_id','price','unit');
+            $properties= array('name','img','description','cat_id','unit','price');
             $product = new Product();
             $i=0;
-            print_r($data[$i]);
             foreach ($properties as $property){
                 if($property == 'price'){
-                    $product->$property = floatval(0.6*$data[$i]);
+                    // Криво округляется поэтому разобъем строку с числом на массив
+
+                    $price_array = explode(',',$data[$i]);
+                    $price_final = (float)$price_array[0] + (float)($price_array[1]*0.01);
+                    $product->$property = (0.6*$price_final);
                     break;
                 }
                 $product->$property = $data[$i];

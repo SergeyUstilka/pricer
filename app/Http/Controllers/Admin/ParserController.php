@@ -56,7 +56,7 @@ class ParserController extends Controller
 
    }
 
-
+// Проверяем сколько страниц в каталоге и собираем ссылки на еденичные продукты (собираем их в массив)
    public static function allLinks(){
        $urls =  [];
        $document = new Document();
@@ -70,12 +70,16 @@ class ParserController extends Controller
            $posts =  $document->find('.tile-content a.product-image-wrapper');
            foreach($posts as $post) {
                $links[] = $post->getAttribute('href');
+               break;
            }
+           if($i ==10){break;}
        }
-       dump($links);
+//       dump($links);
        return $links;
    }
 
+
+// Парсим данные из страниц каталога
    public static function parseProductPages($links, $fp){
        $j=0;
 
@@ -85,7 +89,7 @@ class ParserController extends Controller
            $productPage->loadHtmlFile('https://ezakupy.tesco.pl'.$link, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
            $product_name =  $productPage->first('h1.product-details-tile__title')->text();
            $product_description =  $productPage->first('.list-item-content.promo-content-small')->text();
-           $product_price = floatval($productPage->first('.price-per-quantity-weight .value')->text());
+           $product_price = ($productPage->first('.price-per-sellable-unit--price .value')->text());
            $product_count =  $productPage->first('.price-per-quantity-weight .weight')->text();
            $product_img =  $productPage->first('.product-image__container .product-image ')->getAttribute('src');
 
@@ -103,8 +107,8 @@ class ParserController extends Controller
            $str[] = $product_img;
            $str[] = $product_description;
            $str[] = $product_category;
-           $str[] = $product_price;
            $str[] = $product_count;
+           $str[] = $product_price;
 
 
            fputcsv($fp,$str,';');

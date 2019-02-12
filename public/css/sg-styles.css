@@ -1,0 +1,23 @@
+
+/*Стили для фильтра каталога*/
+.page-filter select.input, .sort-filter select.input{
+    vertical-align: top!important;
+}
+.store-filter .pull-left{
+    display: inline-block;
+    max-width: 250px;
+    width: 100%;
+    float: none!important;
+}
+
+.store-filter .pull-right{
+    float: none!important;
+}
+.store-filter .pull-right .store-pages{
+    float: right;
+}
+.header-btns>li .header-btns-icon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
