@@ -7,6 +7,6 @@ require '../vendor/autoload.php';
 $fp = fopen('tesco.csv','w+');
 
 require '../app/Http/Controllers/Admin/ParserController.php';
-$tescoLinks =  ParserController::allLinks();
-ParserController::parseProductPages($tescoLinks, $fp);
+$tescoLinks =  ParserController::allLinksTesco();
+//ParserController::parseProductPages($tescoLinks, $fp);
 fclose($fp);

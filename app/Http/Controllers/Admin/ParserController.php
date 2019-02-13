@@ -56,34 +56,38 @@ class ParserController extends Controller
 
    }
 
-// Проверяем сколько страниц в каталоге и собираем ссылки на еденичные продукты (собираем их в массив)
-   public static function allLinks(){
+// Проверяем сколько страниц в каталоге Tesco и собираем ссылки на еденичные продукты (собираем их в массив)
+   public static function allLinksTesco(){
        $urls =  [];
        $document = new Document();
-       $url = 'https://ezakupy.tesco.pl/groceries/pl-PL/promotions/all';
+       $url = 'https://tesco.pl/promocje/oferta-tygodnia/';
        $document->loadHtmlFile($url, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
-       $pageCount = intval($document->first('.pagination--page-selector-wrapper li:nth-child(6) span')->text());
-       dump($pageCount);
+       // Найдем количество кнопок пагинации внизу страницы
+       $count = count($document->find('.ddl_plp_pagination  .page'));
+//       dump($count);
+       // Находим номер последней страницы пагинации
+       $pageCount = intval($document->find('.ddl_plp_pagination .page')[$count - 1]->first('.label')->text());
+//       dump($pageCount);
        for($i=1; $i<$pageCount; $i++){
            $document = new Document();
-           $document->loadHtmlFile('https://ezakupy.tesco.pl/groceries/pl-PL/promotions/all?page='.$i, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
-           $posts =  $document->find('.tile-content a.product-image-wrapper');
+           $document->loadHtmlFile('https://tesco.pl/promocje/oferta-tygodnia/?page='.$i, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+           $posts =  $document->find('.m-productListing__products > .visible-md .a-productListing__productsGrid__element .ddl-product-lol > a.details-box');
            foreach($posts as $post) {
                $links[] = $post->getAttribute('href');
-               break;
            }
-           if($i ==10){break;}
+          break;
        }
-//       dump($links);
+       dump($links);
        return $links;
    }
 
 
 // Парсим данные из страниц каталога
-   public static function parseProductPages($links, $fp){
+   public static function parseProductPagesTesco($links, $fp){
        $j=0;
 
-       $categories = ['any','Owoce, warzywa','Nabiał i jaja','Pieczywo, cukiernia', 'Mięso, ryby, garmaż', 'Art. spożywcze', 'Mrożonki', 'Napoje', 'Chemia','Kosmetyki', 'Dla dzieci','Dla zwierząt', 'Art. przemysłowe'];
+
+       $categories = ['Owoce i Warzywa','Nabiał, Jaja, Piekarnia', 'Mięso, Ryby, Wędliny', 'Artykuły spożywcze', 'Mrożonki', 'Napoje', 'AGD','Zdrowie, uroda, dziecko', 'Dla zwierząt','Samochód, Dom, Hobby', 'Ogród'];
        foreach($links as $link){
            $productPage =new Document();
            $productPage->loadHtmlFile('https://ezakupy.tesco.pl'.$link, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);

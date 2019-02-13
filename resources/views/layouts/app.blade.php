@@ -82,7 +82,7 @@
             <div class="pull-left">
                 <!-- Logo -->
                 <div class="header-logo">
-                    <a class="logo" href="{{route('main_page')}}">
+                    <a class="logo" href="{{route('catalog')}}">
                         <img src="{{asset('img/logo.png')}}" alt="">
                     </a>
                 </div>
@@ -211,7 +211,7 @@
             <div class="menu-nav">
                 <span class="menu-header">Menu <i class="fa fa-bars"></i></span>
                 <ul class="menu-list">
-                    <li><a href="{{route('main_page')}}">Главная</a></li>
+                    {{--<li><a href="{{route('main_page')}}">Главная</a></li>--}}
                     <li><a href="{{route('catalog')}}">Каталог</a></li>
                     <li><a href="{{route('admin.')}}">Админпанель</a></li>
                 </ul>
