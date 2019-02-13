@@ -29,7 +29,7 @@
                     <div class="row">
                         @foreach($products as $product)
                         <!-- Product Single -->
-                        <div class="col-md-4 col-sm-6 col-xs-6">
+                        <div class="col-md-4 col-sm-6 col-xs-6 product-single-box">
                             <div class="product product-single">
                                 <div class="product-thumb">
                                     <a href="{{route('product',['product'=>$product, 'category'=>\App\Models\Category::query()->where('id',$product->cat_id)->first()])}}" class="main-btn quick-view"><i class="fa fa-search-plus"></i> Описание</a>

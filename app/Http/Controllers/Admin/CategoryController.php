@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
@@ -91,8 +92,14 @@ class CategoryController extends Controller
         return [];
     }
 
+    /**
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function addDefaultCategories(){
-        $categories =  ['Фрукты, овощи','Молочные продукты, яйца и кондитерские изделия', 'Мясо и рыба', 'Бакалея',
+        DB::statement("SET foreign_key_checks=0");
+        DB::table('categories')->truncate();
+        DB::statement("SET foreign_key_checks=1");
+        $categories =  ['Неопределена','Фрукты, овощи','Молочные продукты, яйца и кондитерские изделия', 'Мясо и рыба', 'Бакалея',
             'Замороженные продукты', 'Напитки', 'Бытовая химия','Косметика, товары для детей','Для животных', 'Автомобиль, дом, хобби', 'Огород'];
         foreach($categories as $category){
             $cat = new Category();

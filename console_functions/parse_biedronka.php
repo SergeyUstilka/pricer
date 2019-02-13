@@ -4,9 +4,9 @@
 use App\Http\Controllers\Admin\ParserController;
 
 require '../vendor/autoload.php';
-$fp = fopen('tesco.csv','w+');
+$fp = fopen('biedronka.csv','w+');
 
 require '../app/Http/Controllers/Admin/ParserController.php';
-$tescoLinks =  ParserController::allLinksTesco();
-ParserController::parseProductPagesTesco($tescoLinks, $fp);
+$biedronkaLinks =  ParserController::getAllProductLinksBiedronka();
+ParserController::parseClubCardBiedronka($biedronkaLinks, $fp);
 fclose($fp);
