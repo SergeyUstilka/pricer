@@ -73,9 +73,9 @@ class ParserController extends Controller
             foreach ($posts as $post) {
                 $links[] = $post->getAttribute('href');
             }
-            if ($i ==3) {
-                break;
-            }
+//            if ($i ==3) {
+//                break;
+//            }
         }
 //       dump($links);
         return $links;
