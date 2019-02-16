@@ -15,6 +15,6 @@ fclose($fp);
 $fp = fopen('tesco_img.csv','w+');
 foreach ($img_links as $link){
     $img [0] = $link;
-    fputcsv($fp, $img, '\n');
+    fputcsv($fp, $img, ' ');
 }
 fclose($fp);
