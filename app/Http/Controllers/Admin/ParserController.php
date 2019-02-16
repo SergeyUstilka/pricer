@@ -73,9 +73,9 @@ class ParserController extends Controller
             foreach ($posts as $post) {
                 $links[] = $post->getAttribute('href');
             }
-//            if ($i ==5) {
-//                break;
-//            }
+            if ($i ==3) {
+                break;
+            }
         }
 //       dump($links);
         return $links;
@@ -105,9 +105,13 @@ class ParserController extends Controller
                 }
             }
             $img_exp_to_mas =  explode('/',$product_img);
+            $newStr = str_replace('https://','https%3A%2F%2F',$product_img);
+            dump($newStr);
+            $finalStr = str_replace('/','%2F',$newStr);
+            dump($finalStr);
             $str = [];
             $str[] = $product_name;
-            $str[] = 'Tesco'.date('m-d-Y-').$j.substr($img_exp_to_mas[count($img_exp_to_mas) -1],-4);
+            $str[] = $finalStr;
             $str[] = $product_description;
             $str[] = $product_category;
             $str[] = $product_count;

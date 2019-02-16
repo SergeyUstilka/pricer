@@ -154,7 +154,7 @@ class FilesCSVController extends Controller
         if(isset($request->images)){
             $files = $request->images;
             foreach ($files as $file) {
-                $name = 'Tesco'.$file->getClientOriginalName();
+                $name = $file->getClientOriginalName();
                 $file->move(storage_path('app/public/img'),$name);
                 $photo = new Photo();
                 $photo->name = $name;
