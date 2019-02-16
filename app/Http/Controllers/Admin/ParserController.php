@@ -72,7 +72,6 @@ class ParserController extends Controller
             $posts = $document->find('.tile-content a.product-image-wrapper');
             foreach ($posts as $post) {
                 $links[] = $post->getAttribute('href');
-                break;
             }
 //            if ($i ==5) {
 //                break;
