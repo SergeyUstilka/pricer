@@ -74,7 +74,7 @@ class ParserController extends Controller
                 $links[] = $post->getAttribute('href');
                 break;
             }
-            if ($i == 10) {
+            if ($i ==5) {
                 break;
             }
         }
@@ -87,7 +87,7 @@ class ParserController extends Controller
     public static function parseProductPagesTesco($links, $fp)
     {
         $j = 0;
-
+        $images_links = [];
         $categories = ['undefined','undefined', 'Owoce, warzywa', 'Nabiał i jaja', 'Pieczywo, cukiernia', 'Mięso, ryby, garmaż', 'Art. spożywcze', 'Mrożonki', 'Napoje', 'Chemia', 'Kosmetyki', 'Dla dzieci', 'Dla zwierząt', 'Art. przemysłowe'];
         foreach ($links as $link) {
             $productPage = new Document();
@@ -105,20 +105,20 @@ class ParserController extends Controller
                     break;
                 }
             }
-
-
+            $img_exp_to_mas =  explode('/',$product_img);
             $str = [];
             $str[] = $product_name;
-            $str[] = $product_img;
+            $str[] = 'Tesco'.date('m-d-Y-').$j.substr($img_exp_to_mas[count($img_exp_to_mas) -1],-4);
             $str[] = $product_description;
             $str[] = $product_category;
             $str[] = $product_count;
             $str[] = $product_price;
 
-
+            $images_links [] =  $product_img;
             fputcsv($fp, $str, ';');
             dump($j++);
         }
+        return $images_links ;
     }
 
 

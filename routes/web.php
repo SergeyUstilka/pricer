@@ -35,6 +35,7 @@ Route::namespace('Admin')->middleware(['auth'])->prefix('admin')->name('admin.')
     Route::any('activate_csv', 'FilesCSVController@activate')->name('activate_csv');
     Route::any('disactivate_csv', 'FilesCSVController@disactivate')->name('disactivate_csv');
     Route::any('parser', 'ParserController@index')->name('parser_main');
+    Route::any('upload_a_lot_photo/{csv}','FilesCSVController@upload_photo')->name('upload_photo');
 });
 
 

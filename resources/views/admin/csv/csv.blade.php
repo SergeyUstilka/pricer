@@ -56,7 +56,7 @@
                             <th>Название магазина</th>
                             <th>Описание набора товаров</th>
                             <th>Статус</th>
-                            <th>Путь к файлу</th>
+                            <th></th>
                             <th></th>
                         </tr>
                         </thead>
@@ -74,7 +74,20 @@
                                 </td>
                                 <td>{{$csv_file->description}}</td>
                                 <td>{{$csv_file->active}}</td>
-                                <td> {{app_path().'/../public/storage/csv/'}} </br>{{$csv_file->name}}</td>
+                                <td>
+                                    <form action="{{route('admin.upload_photo',['csv'=>$csv_file])}}" method="post" novalidate="novalidate" enctype="multipart/form-data">
+                                        @csrf
+                                        <div class="form-group">
+                                            <label>Выберите фото</label>
+                                            <input  required name="images[]" multiple type="file"  aria-required="true" aria-invalid="false">
+                                        </div>
+                                        <div>
+                                            <button id="payment-button" type="submit" class="btn btn-md btn-primary">
+                                                Загрузить
+                                            </button>
+                                        </div>
+                                    </form>
+                                </td>
                                 <td>
                                     <a href="#" class="btn btn-md btn-warning disactivate-csv @if($csv_file->active == 0)hidden @endif" data-url="{{route('admin.disactivate_csv')}}"
                                        data-csv_id="{{$csv_file->id}}">Деактивировать</a>

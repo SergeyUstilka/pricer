@@ -24,19 +24,19 @@
                     <div class="col-md-6">
                         <div id="product-main-view">
                             <div class="product-view">
-                                <img src="{{$product->img}}" alt="">
+                                <img src="{{asset('/storage/img/'.$product->img)}}" alt="">
                             </div>
                         </div>
                         <div id="product-view">
                             <div class="product-view">
-                                <img src="{{$product->img}}" alt="">
+                                <img src="{{asset('/storage/img/'.$product->img)}}" alt="">
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="product-body">
                             <h2 class="product-name">{{$product->name}}</h2>
-                            <h3 class="product-price">{{$product->price}}{{$product->unit}} </h3>
+                            <h3 class="product-price">{{$product->price}} Br  </h3>
 
                             <p><strong>Магазин:</strong> {{$shop->name}}</p>
                             <p>{{$product->description}}</p>

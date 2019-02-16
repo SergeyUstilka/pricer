@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\ProductRequest;
 use App\Models\CSV;
+use App\Models\Photo;
 use App\Models\Product;
 use App\Models\Shop;
 use Illuminate\Http\Request;
@@ -147,5 +148,21 @@ class FilesCSVController extends Controller
         $csv = CSV::query()->where('id',$request->input('csv_id'))->first();
         $csv->active = 0;
         $csv->save();
+    }
+
+    public function upload_photo(Request $request, CSV $csv){
+        if(isset($request->images)){
+            $files = $request->images;
+            foreach ($files as $file) {
+                $name = 'Tesco'.$file->getClientOriginalName();
+                $file->move(storage_path('app/public/img'),$name);
+                $photo = new Photo();
+                $photo->name = $name;
+                $photo->csv_id = $csv->id;
+                $photo->save();
+            }
+        }
+
+        return back();
     }
 }
