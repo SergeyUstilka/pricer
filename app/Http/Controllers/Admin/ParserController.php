@@ -106,9 +106,7 @@ class ParserController extends Controller
             }
             $img_exp_to_mas =  explode('/',$product_img);
             $newStr = str_replace('https://','https%3A%2F%2F',$product_img);
-            dump($newStr);
             $finalStr = str_replace('/','%2F',$newStr);
-            dump($finalStr);
             $str = [];
             $str[] = $product_name;
             $str[] = $finalStr;
