@@ -74,9 +74,9 @@ class ParserController extends Controller
                 $links[] = $post->getAttribute('href');
                 break;
             }
-            if ($i ==5) {
-                break;
-            }
+//            if ($i ==5) {
+//                break;
+//            }
         }
 //       dump($links);
         return $links;
