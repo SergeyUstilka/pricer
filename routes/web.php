@@ -11,8 +11,8 @@
 |
 */
 
-Route::get('/', 'IndexController@index')->name('main_page');
-Route::get('/home', 'IndexController@index');
+Route::get('/', function (){ return redirect('catalog');})->name('main_page');
+Route::get('/home', function (){ return redirect('catalog');});
 Auth::routes();
 
 Route::any('/catalog/{category?}','CatalogController@index')->name('catalog');

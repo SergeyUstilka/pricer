@@ -28,8 +28,13 @@ class CatalogController extends Controller
             $products = Product::query()->where('cat_id',$category->id)->orderBy($catalog_filter['sort_by'],'desc')
                 ->paginate($catalog_filter['count_product']);
             $current_category = $category;
-            if(count($products->items())  === 0){
-                return redirect('/catalog/'.$category->slug.'/');
+            if(isset(explode('?',$_SERVER['REQUEST_URI'])[1])){
+                $pagination_page_parametr = explode('?',$_SERVER['REQUEST_URI'])[1];  ///  Возвращает что то типа "page=2"
+                if(explode('=',$pagination_page_parametr)[0] == 'page'){
+                    if(count($products->items())  === 0){
+                        return redirect('/catalog/'.$category->slug.'/');
+                    }
+                }
             }
 
         }else{
