@@ -41,9 +41,7 @@ class CatalogController extends Controller
             $products = Product::orderBy($catalog_filter['sort_by'],'desc')
                 ->paginate($catalog_filter['count_product']);
             $current_category = null;
-            if(count($products->items())  === 0){
-                return redirect('/catalog/');
-            }
+
         }
 
         return view('catalog.fasade',compact('products','current_category','request'));
