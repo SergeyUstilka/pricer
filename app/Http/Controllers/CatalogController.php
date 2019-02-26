@@ -23,6 +23,7 @@ class CatalogController extends Controller
             $catalog_filter['shop'] = $request->input('sort_shop');
             session(['catalog_filter'=>$catalog_filter]);
         }
+
         if($category->id){
             $products = Product::query()->where('cat_id',$category->id)->orderBy($catalog_filter['sort_by'],'desc')
                 ->paginate($catalog_filter['count_product']);

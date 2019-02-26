@@ -20,9 +20,9 @@ $catalog_filter =  $request->session()->get('catalog_filter')
                 <div class="page-filter">
                     <p class="text-uppercase">Товаров на странице:</p>
                     <select class="input" name="count_product">
-                        <option value="10" @if($catalog_filter['count_product']== '10') selected @endif>10</option>
-                        <option value="20"@if($catalog_filter['count_product']== '20') selected @endif>20</option>
+                        <option value="15" @if($catalog_filter['count_product']== '15') selected @endif>15</option>
                         <option value="30"@if($catalog_filter['count_product']== '30') selected @endif>30</option>
+                        <option value="45"@if($catalog_filter['count_product']== '45') selected @endif>45</option>
                     </select>
                     <button class="main-btn icon-btn" type="submit"><i class="fa fa-arrow-down"></i></button>
                 </div>

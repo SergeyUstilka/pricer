@@ -166,3 +166,6 @@ class FilesCSVController extends Controller
         return back();
     }
 }
+
+//https%253A%252F%252Fsecure.ce-tescoassets.com%252Fassets%252FPL%252F586%252F0000096091586%252FShotType1_540x540.jpg
+//https%3A%2F%2Fsecure.ce-tescoassets.com%2Fassets%2FPL%2F586%2F0000096091586%2FShotType1_540x540.jpg

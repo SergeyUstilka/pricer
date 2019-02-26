@@ -28,5 +28,6 @@
     .product-single-box {
         width: 30%!important;
         display: inline-block;
+        min-height: 450px;
     }
 }
